@@ -10,5 +10,6 @@ export const routeNavItems = [
     { to: 'my-orders', navText: 'My Orders' },
     { to: 'my-account', navText: 'My Account' },
     { to: 'sign-in', navText: 'Sign In' },
-    { to: 'cart', navText: '🛒 0' },
 ]
+
+export const API_BASE = "https://api.escuelajs.co/api/v1";
