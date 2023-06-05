@@ -4,9 +4,21 @@ export const ShoppingContext = createContext()
 
 const ShoppingProvider = ({ children }) => {
     const [counter, setCounter] = useState(0)
+    const [selectedProduct, setSelectedProduct] = useState(null)
+    const closeProductDetail = () => setSelectedProduct(null);
+    const isProductDetailSelected = !!selectedProduct;
 
     return (
-        <ShoppingContext.Provider value={{ counter, setCounter }}>
+        <ShoppingContext.Provider
+            value={{
+                counter,
+                setCounter,
+                selectedProduct,
+                setSelectedProduct,
+                isProductDetailSelected,
+                closeProductDetail
+            }}
+        >
             {children}
         </ShoppingContext.Provider>
     )

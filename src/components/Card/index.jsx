@@ -2,11 +2,15 @@ import { PlusIcon } from '@heroicons/react/24/solid'
 
 import { useShoppingContext } from '../../providers/Shopping'
 
-const Card = ({ title, price, category, images }) => {
-    const { setCounter } = useShoppingContext()
+const Card = (productData) => {
+    const { setCounter, setSelectedProduct } = useShoppingContext()
+    const { title, price, category, images } = productData
 
     return (
-        <div className="cursor-pointer w-56 h-fit rounded-md">
+        <div
+            className="cursor-pointer w-56 h-fit rounded-md"
+            onClick={() => setSelectedProduct(productData)}
+        >
             <figure className="relative w-full aspect-square rounded-lg overflow-hidden">
                 <span onClick={() => setCounter(prev => prev + 1)} className="absolute top-0 right-0 flex justify-center items-center m-2 p-1 rounded-full w-6 h-6 bg-white/60 hover:bg-white">
                     <PlusIcon className='h-6 w-6 text-black' />
