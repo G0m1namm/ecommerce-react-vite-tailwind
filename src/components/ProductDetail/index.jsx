@@ -5,6 +5,7 @@ import { useShoppingContext } from '../../providers/Shopping'
 
 const ProductDetail = () => {
     const { closeProductDetail, isProductDetailSelected, selectedProduct } = useShoppingContext()
+
     return (
         <aside className={clx('fixed z-10 top-[64px] right-0 w-[300px] h-[calc(100dvh-64px)] overflow-x-hidden bg-white', {
             'hidden': !isProductDetailSelected
