@@ -8,21 +8,26 @@ const ShoppingProvider = ({ children }) => {
 
     // Product Detai · Control selected product
     const [selectedProduct, setSelectedProduct] = useState(null)
-    const closeProductDetail = () => setSelectedProduct(null)
     const isProductDetailSelected = !!selectedProduct;
+
+    const closeProductDetail = () => setSelectedProduct(null)
 
     // Order list · control selected orders
     const [orderList, setOrderList] = useState([])
     const [isOrderListOpen, setIsOrderListOpen] = useState(false)
+
     const closeOrderList = () => setIsOrderListOpen(false)
     const openOrderList = () => setIsOrderListOpen(true)
-
+    const toggleOrderList = () => setIsOrderListOpen(prev => !prev)
     const deleteOrder = (orderId) => {
         if (!orderList.length) return
         const filteredOrder = orderList.filter(order => order.id !== orderId)
         setOrderList(filteredOrder)
         setCounter(filteredOrder.length)
     }
+
+    // Checkout List · Control orders after checkout
+    const [checkoutOrders, setCheckoutOrders] = useState([])
 
     return (
         <ShoppingContext.Provider
@@ -38,7 +43,10 @@ const ShoppingProvider = ({ children }) => {
                 isOrderListOpen,
                 closeOrderList,
                 openOrderList,
-                deleteOrder
+                toggleOrderList,
+                deleteOrder,
+                setCheckoutOrders,
+                checkoutOrders
             }}
         >
             {children}

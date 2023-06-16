@@ -1,6 +1,6 @@
 export const filterNavItems = [
     { to: '/', navText: 'All' },
-    { to: 'clothes', navText: 'Clothes' },
+    { to: '?clothes', navText: 'Clothes' },
     { to: 'furnitures', navText: 'Furnitures' },
     { to: 'toys', navText: 'Toys' },
     { to: 'others', navText: 'Others' },

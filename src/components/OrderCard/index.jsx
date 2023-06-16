@@ -12,9 +12,9 @@ const OrderCard = (orderData) => {
                 <span className='font-bold text-xs max-w-[150px] flex-1 whitespace-nowrap overflow-ellipsis overflow-hidden'>{title}</span>
                 <span className='text-base mb-1 flex-auto'>${price}</span>
             </div>
-            <button onClick={deleteOrder} className='flex-none p-2 border-none'>
+            {deleteOrder && <button onClick={deleteOrder} className='flex-none p-2 border-none'>
                 <TrashIcon className='w-6 h-6 text-black' />
-            </button>
+            </button>}
         </div>
     )
 }

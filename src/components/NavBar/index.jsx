@@ -18,7 +18,7 @@ const NavItem = ({ to, navText = '', className = '' }) => {
 }
 
 const NavBar = () => {
-  const { counter } = useShoppingContext()
+  const { counter, toggleOrderList } = useShoppingContext()
 
   return (
     <nav className='flex justify-between items-center fixed top-0 w-full z-10 py-5 px-8'>
@@ -28,7 +28,11 @@ const NavBar = () => {
       </ul>
       <ul className='inline-flex gap-3'>
         {routeNavItems.map((filterItem) => <NavItem key={`nav-item-${filterItem.to}`} {...filterItem} />)}
-        <NavItem to='cart' navText={`🛒 ${counter}`} className='font-bold' />
+        <li className='inline-flex gap-3'>
+          <button className='rounded-md bg-white hover:bg-black/20 p-1 text-sm -mt-1' onClick={toggleOrderList}>
+            🛒 {counter}
+          </button>
+        </li>
       </ul>
     </nav>
   )
