@@ -7,7 +7,7 @@ import { getTotalPrice } from '../../helpers/utils'
 import { NavLink } from 'react-router-dom'
 
 const OrdersList = () => {
-    const { isOrderListOpen, orderList, closeOrderList, setOrderList, deleteOrder, setCheckoutOrders, setCounter } = useShoppingContext()
+    const { isOrderListOpen, orderList, closeOrderList, setOrderList, deleteOrder, setCheckoutOrders, setCounter, updateOrder } = useShoppingContext()
 
     const onAddCheckoutOrder = (products) => {
         const newOrder = {
@@ -23,7 +23,7 @@ const OrdersList = () => {
     }
 
     return (
-        <aside className={clx('fixed z-10 top-[64px] right-0 w-[300px] h-[calc(100dvh-64px)] overflow-hidden bg-white shadow-2xl', {
+        <aside className={clx('fixed z-10 top-0 right-0 w-[400px] h-[100dvh] overflow-hidden bg-white shadow-2xl', {
             'hidden': !isOrderListOpen
         })}>
             <div className='px-4 pb-6 h-full overflow-y-auto flex flex-col'>
@@ -34,13 +34,16 @@ const OrdersList = () => {
                     </button>
                 </div>
                 <section className='space-y-3 mt-2 flex-1'>
-                    {orderList?.map(order => (
+                    {orderList?.map((order, orderIndex) => (
                         <OrderCard
                             key={`order-item-${order.id}`}
+                            index={orderIndex}
                             title={order.title}
                             price={order.price}
                             images={order.images}
                             deleteOrder={() => deleteOrder(order.id)}
+                            quantity={order.quantity}
+                            updateOrder={updateOrder}
                         />
                     ))}
                 </section>

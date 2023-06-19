@@ -23,8 +23,7 @@ const NavBar = () => {
   return (
     <nav className='flex justify-between items-center fixed top-0 w-full z-10 py-5 px-8'>
       <ul className='inline-flex gap-3'>
-        <NavItem to='/' navText='Shopi' className='font-bold' />
-        {filterNavItems.map((filterItem) => <NavItem key={`filter-item-${filterItem.to}`} {...filterItem} />)}
+        <NavItem to='/' navText='Shopi' className='font-medium text-2xl' />
       </ul>
       <ul className='inline-flex gap-3'>
         {routeNavItems.map((filterItem) => <NavItem key={`nav-item-${filterItem.to}`} {...filterItem} />)}

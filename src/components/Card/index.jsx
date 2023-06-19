@@ -8,10 +8,16 @@ const Card = (productData) => {
 
     const onAddProductOrder = (event, product) => {
         setCounter(prev => prev + 1)
-        setOrderList(prev => [...prev, product])
+        setOrderList(prev => {
+            const newProduct = addQuantity(product)
+            console.log(newProduct);
+            return [...prev, newProduct]
+        })
         openOrderList()
         event.stopPropagation()
     }
+
+    const addQuantity = (product) => ({ ...product, quantity: 1 })
 
     const renderAddOrderButton = (item, orders) => {
         const id = item.id

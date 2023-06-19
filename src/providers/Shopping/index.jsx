@@ -1,4 +1,5 @@
 import { useContext, createContext, useState } from 'react'
+import { cloneDeep } from 'lodash'
 
 export const ShoppingContext = createContext()
 
@@ -26,6 +27,12 @@ const ShoppingProvider = ({ children }) => {
         setCounter(filteredOrder.length)
     }
 
+    const updateOrder = (index, key, value) => {
+        let updatedArray = cloneDeep(orderList)
+        updatedArray[index][key] = value
+        setOrderList(updatedArray)
+    }
+
     // Checkout List · Control orders after checkout
     const [checkoutOrders, setCheckoutOrders] = useState([])
 
@@ -46,7 +53,8 @@ const ShoppingProvider = ({ children }) => {
                 toggleOrderList,
                 deleteOrder,
                 setCheckoutOrders,
-                checkoutOrders
+                checkoutOrders,
+                updateOrder
             }}
         >
             {children}
