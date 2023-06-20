@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
 import { ChevronLeftIcon } from '@heroicons/react/24/solid'
+import { useMatch } from '@tanstack/react-location'
 
 import Layout from '../../components/Layout'
 import { useShoppingContext } from "../../providers/Shopping"
 import OrderCard from '../../components/OrderCard'
 
 function MyOrder() {
-  const { id } = useParams()
+  const { params: { id } } = useMatch()
   const { checkoutOrders } = useShoppingContext()
   const checkoutOrder = id === 'last' ? checkoutOrders?.slice(-1)[0] : checkoutOrders?.filter(order => order.id === +id)[0]
 

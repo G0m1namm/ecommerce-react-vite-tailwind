@@ -4,7 +4,7 @@ import clx from 'classnames'
 import { useShoppingContext } from "../../providers/Shopping"
 import OrderCard from '../OrderCard'
 import { getTotalPrice } from '../../helpers/utils'
-import { NavLink } from 'react-router-dom'
+import { Link } from '@tanstack/react-location'
 
 const OrdersList = () => {
     const { isOrderListOpen, orderList, closeOrderList, setOrderList, deleteOrder, setCheckoutOrders, setCounter, updateOrder } = useShoppingContext()
@@ -52,14 +52,14 @@ const OrdersList = () => {
                         <h3 className='font-bold'>Total price:</h3>
                         <span className='text-lg font-bold'>${getTotalPrice(orderList)}</span>
                     </div>
-                    <NavLink to='/my-order/last'>
+                    <Link to='/my-order/last'>
                         <button
                             className='flex w-full rounded-lg uppercase bg-black disabled:bg-gray-400 disabled:pointer-events-none text-white justify-center p-2 mt-4'
                             onClick={() => onAddCheckoutOrder(orderList)}
                         >
                             Checkout Order
                         </button>
-                    </NavLink>
+                    </Link>
                 </div>
             </div>
         </aside>

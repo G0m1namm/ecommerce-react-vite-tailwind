@@ -1,12 +1,20 @@
+import { isEmpty } from 'lodash';
+import { useSearch } from '@tanstack/react-location';
+
 import Layout from '../../components/Layout'
 import Card from '../../components/Card'
-import ProductDetail from '../../components/ProductDetail'
-import { useProducts } from '../../providers/Products'
-import OrdersList from '../../components/OrdersList'
 import FilterTags from '../../components/FilterTags'
+import ProductDetail from '../../components/ProductDetail'
+import OrdersList from '../../components/OrdersList'
+import { useProducts } from '../../hooks/useProducts'
+import { useCategories } from '../../hooks/useCategories';
+import { useProductsContext } from '../../providers/Products';
 
 function Home() {
-  const { products, searchByTitle, setSearchByTitle, categories } = useProducts()
+  const { searchByTitle, setSearchByTitle, debouncedSearchByTitle } = useProductsContext()
+  const searchParams = useSearch()
+  const { isLoading, isFetching, data: products } = useProducts(debouncedSearchByTitle, searchParams)
+  const { data: categories } = useCategories()
 
   const onSearch = (e) => {
     setSearchByTitle(e.target.value)
@@ -25,8 +33,9 @@ function Home() {
         />
       </div>
       <FilterTags tags={categories} />
+      {(isLoading || isFetching) && <h2 className='text-2xl font-bold'>Is Loading...</h2>}
       <div className='grid grid-cols-4 gap-4 w-fit'>
-        {products?.map(item => <Card key={`product-${item.id}`} {...item} />)}
+        {!isEmpty(products) && products?.map(item => <Card key={`product-${item.id}`} {...item} />)}
       </div>
       <ProductDetail />
       <OrdersList />

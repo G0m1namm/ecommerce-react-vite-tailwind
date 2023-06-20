@@ -1,18 +1,20 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import clx from 'classnames'
+import { Link } from '@tanstack/react-location'
 
-import { filterNavItems, routeNavItems } from '../../helpers/constants'
+import { routeNavItems } from '../../helpers/constants'
 import { useShoppingContext } from '../../providers/Shopping'
 
 const NavItem = ({ to, navText = '', className = '' }) => {
-  const activeClassname = 'underline'
-
   return (
     <li className={clx('font-light', className)}>
-      <NavLink to={to} className={({ isActive }) => isActive ? activeClassname : undefined}>
+      <Link
+        to={to}
+        className={className}
+        activeOptions={{ exact: true }}
+      >
         {navText}
-      </NavLink>
+      </Link>
     </li>
   )
 }
