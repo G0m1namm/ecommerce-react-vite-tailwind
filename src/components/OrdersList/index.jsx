@@ -23,10 +23,10 @@ const OrdersList = () => {
     }
 
     return (
-        <aside className={clx('fixed z-10 top-0 right-0 w-[400px] h-[100dvh] overflow-hidden bg-white shadow-2xl', {
+        <aside className={clx('fixed z-40 top-0 right-0 w-[400px] h-[100dvh] overflow-hidden', {
             'hidden': !isOrderListOpen
         })}>
-            <div className='px-4 pb-6 h-full overflow-y-auto flex flex-col'>
+            <div className='px-4 relative z-30 pb-6 h-full flex flex-col bg-white shadow-2xl'>
                 <div className='flex flex-none justify-between items-center py-3'>
                     <h2 className='font-medium'>Cart</h2>
                     <button className='border-none p-2' onClick={closeOrderList}>
@@ -62,6 +62,7 @@ const OrdersList = () => {
                     </Link>
                 </div>
             </div>
+            <div className='fixed z-20 w-full h-[100dvh] top-0 left-0 bottom-0 bg-black/30'></div>
         </aside>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { ChevronLeftIcon } from '@heroicons/react/24/solid'
-import { useMatch } from '@tanstack/react-location'
+import { Link, useMatch } from '@tanstack/react-location'
 
 import Layout from '../../components/Layout'
 import { useShoppingContext } from "../../providers/Shopping"
@@ -21,12 +21,18 @@ function MyOrder() {
       </div>
       <section className='last-order-view space-y-3 mt-2'>
         {checkoutOrder?.products?.map(order => (
-          <OrderCard
+          <li
             key={`last-order-${order.id}`}
-            title={order.title}
-            price={order.price}
-            images={order.images}
-          />
+            className='flex border border-black rounded-md'
+          >
+            <figure className='flex-none max-w-[100px] aspect-square'>
+              <img className='w-full rounded-md' src={order.images[0]} alt={order.title} />
+            </figure>
+            <div className='p-2'>
+              <h2 className='mb-2'>{order.title}</h2>
+              <span className='font-bold text-lg'>${order.price}</span>
+            </div>
+          </li>
         ))}
       </section>
     </Layout>
